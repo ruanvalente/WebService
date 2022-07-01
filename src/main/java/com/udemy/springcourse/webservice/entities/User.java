@@ -1,16 +1,21 @@
 package com.udemy.springcourse.webservice.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    Long id;
-    String name;
-    String email;
-    String phone;
-    String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String email;
+    private String phone;
+    private String password;
 
     public User () {}
 
