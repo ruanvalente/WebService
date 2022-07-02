@@ -27,9 +27,8 @@ public class UserResource {
     public ResponseEntity<User> findUserById(@PathVariable(value = "id") Long id) {
         Optional<User> user = userServices.findById(id);
 
-        if (user.isPresent()) {
-            return ResponseEntity.ok().body(user.get());
-        }
-        return ResponseEntity.notFound().build();
+        return user.map(value -> ResponseEntity.ok()
+                .body(value))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
