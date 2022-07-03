@@ -14,11 +14,11 @@ public class UserServices {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll () {
+    public List<User> listAllUsers () {
         return userRepository.findAll();
     }
 
-    public Optional<User> findById (Long id) {
+    public Optional<User> findByUserId (Long id) {
         return userRepository.findById(id);
     }
 }
