@@ -1,8 +1,10 @@
 package com.udemy.springcourse.webservice.config;
 
+import com.udemy.springcourse.webservice.entities.Category;
 import com.udemy.springcourse.webservice.entities.Order;
 import com.udemy.springcourse.webservice.entities.User;
 import com.udemy.springcourse.webservice.entities.enums.OrderStatus;
+import com.udemy.springcourse.webservice.repository.CategoryRepository;
 import com.udemy.springcourse.webservice.repository.OrderRepository;
 import com.udemy.springcourse.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class TestProfileConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
 
     @Override
     public void run(String... args) {
@@ -32,7 +37,12 @@ public class TestProfileConfig implements CommandLineRunner {
         Order order2 = new Order(null, Instant.parse("2022-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, user2);
         Order order3 = new Order(null, Instant.parse("2022-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, user1);
 
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null,  "Book");
+        Category category3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
     }
 }
