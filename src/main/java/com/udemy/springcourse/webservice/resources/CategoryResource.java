@@ -20,14 +20,15 @@ public class CategoryResource {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAllCategories () {
+    public ResponseEntity<List<Category>> listAllCategories () {
         List<Category> categories = categoryService.findAllCategories();
 
         return ResponseEntity.ok().body(categories);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Category> category(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Category> getCategoryById (@PathVariable(value =
+            "id") Long id) {
         Optional<Category> category = categoryService.getCategoryById(id);
 
         return category.map(value -> ResponseEntity.ok()
