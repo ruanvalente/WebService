@@ -68,6 +68,4 @@ public class Category implements Serializable {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-
 }
