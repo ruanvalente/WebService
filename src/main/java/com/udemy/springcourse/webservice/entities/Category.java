@@ -1,5 +1,7 @@
 package com.udemy.springcourse.webservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -17,7 +19,8 @@ public class Category implements Serializable {
 
     private String name;
 
-    @Transient
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private final Set<Product> products = new HashSet<>();
 
     public Category() { }
@@ -53,7 +56,7 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return id.equals(category.id);
+        return Objects.equals(id, category.id);
     }
 
     @Override
